@@ -132,4 +132,12 @@ $autoload['language'] = array();
 |
 |	$autoload['model'] = array('first_model' => 'first');
 */
-$autoload['model'] = array('Control'=>'call');
+
+$path=APPPATH.'/models';
+$scan=scandir($path);
+$scan=array_values(array_diff($scan,array('..','.')));
+$model=array_map(function($str){
+	return ($str!='index.html') ? str_replace('.php','',$str):'';
+},$scan);
+$autoload['model'] = array();
+
